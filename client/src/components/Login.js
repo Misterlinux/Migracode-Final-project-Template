@@ -10,6 +10,12 @@ function Log(){
 
   const [inputList, setInputList] = useState(<h1> no message </h1>);
 
+  const [token, setToken] = useState( { } );
+  
+  const { key } = token
+  console.log("this is the key after the function and avaiable variable " +key)
+
+
   const [loginCredentials, setLoginCredentials] = useState({
       name: "",
       password: "",
@@ -20,7 +26,13 @@ function Log(){
     setLoginCredentials({...loginCredentials , [e.target.name] : e.target.value})
   }
 
+  const setkey  =(e)=>{
+    setToken( {...token , key: e })
 
+
+    console.log("this is the second key " + e)
+    console.log("this is the third key  " + key )
+  }
 
   function test(e){
     e.preventDefault();
@@ -47,8 +59,14 @@ function Log(){
     }
     fetch("http://localhost:5000/mini",sendmethod)
     .then((res) => res.json())
-    .then((message) => console.log(message))
-    
+    .then((message) => {
+      
+      console.log("this is the first key " + message)
+
+      setkey(message)
+
+    })
+
   }
 
     return <div>
